@@ -17,11 +17,11 @@ for (const link of links) {
   })
 }
 
-/* muda o header da página quando der scroll */
-const header = document.querySelector('#header')
-const navHeight = header.offsetHeight
+function changeHeaderScroll() {
+  /* muda o header da página quando der scroll */
+  const header = document.querySelector('#header')
+  const navHeight = header.offsetHeight
 
-window.addEventListener('scroll', function () {
   if (window.scrollY >= navHeight) {
     // scroll é maior que a altura do header
     header.classList.add('scroll')
@@ -29,7 +29,7 @@ window.addEventListener('scroll', function () {
     //menor que a altura do header
     header.classList.remove('scroll')
   }
-})
+}
 
 /* TESTIMONIAIS - CARROSEL (SWIPER JS) */
 
@@ -56,6 +56,25 @@ scrollReveal.reveal(
 #about .image, #about .text,
 #services header, #services .card,
 #testimonials header, #testimonials .testimonials,
-#contact .text, #contact .links`,
+#contact .text, #contact .links,
+footer .brand, footer .social
+`,
   { interval: 100 }
 )
+
+/* BOTTON UP PAGE - BACK - TO - TOP */
+
+function btnUp() {
+  const btnUp = document.querySelector('.back-to-top')
+
+  if (window.scrollY >= 560) {
+    btnUp.classList.add('show')
+  } else {
+    btnUp.classList.remove('show')
+  }
+}
+
+window.addEventListener('scroll', function () {
+  changeHeaderScroll()
+  btnUp()
+})
